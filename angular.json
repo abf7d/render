@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "projects": {
+    "render-ui": {
+      "projectType": "application",
+      "root": "apps/render-ui",
+      "sourceRoot": "apps/render-ui/src",
+      "prefix": "render",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/render-ui",
+            "index": "apps/render-ui/src/index.html",
+            "main": "apps/render-ui/src/main.ts",
+            "polyfills": "apps/render-ui/src/polyfills.ts",
+            "tsConfig": "apps/render-ui/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/render-ui/src/favicon.ico",
+              "apps/render-ui/src/assets"
+            ],
+            "styles": ["apps/render-ui/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/render-ui/src/environments/environment.ts",
+                  "with": "apps/render-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "render-ui:build:production"
+            },
+            "development": {
+              "browserTarget": "render-ui:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "render-ui:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/render-ui/src/**/*.ts",
+              "apps/render-ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/render-ui"],
+          "options": {
+            "jestConfig": "apps/render-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "render-ui-e2e": {
+      "root": "apps/render-ui-e2e",
+      "sourceRoot": "apps/render-ui-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/render-ui-e2e/cypress.json",
+            "devServerTarget": "render-ui:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "render-ui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/render-ui-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["render-ui"]
+    }
+  }
+}
