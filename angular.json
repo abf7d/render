@@ -122,6 +122,29 @@
       },
       "tags": [],
       "implicitDependencies": ["render-ui"]
+    },
+    "viv-viewer": {
+      "root": "libs/viv-viewer",
+      "sourceRoot": "libs/viv-viewer/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/viv-viewer/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/viv-viewer"],
+          "options": {
+            "jestConfig": "libs/viv-viewer/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
