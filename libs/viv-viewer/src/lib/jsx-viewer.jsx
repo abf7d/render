@@ -16,8 +16,8 @@ export class JsxViewerWebComponent extends HTMLElement {
       this.mountPoint = document.createElement('div');
       this.appendChild(this.mountPoint);
     }
-    ReactDOM.render(React.createElement(JsxViewer), this.mountPoint)
-    // ReactDOM.render(<JsxViewer />, this.mountPoint);
+    // ReactDOM.render(React.createElement(JsxViewer), this.mountPoint)
+    ReactDOM.render(<JsxViewer />, this.mountPoint);
   }
 }
 customElements.define('jsx-viewer', JsxViewerWebComponent);

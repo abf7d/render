@@ -20,6 +20,8 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "allowJs": true,
+    "esModuleInterop": true,
     "jsx": "react-jsx"
   },
   "angularCompilerOptions": {
