@@ -6,7 +6,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme, createTheme } from '@material-ui/core/styles';
 import { grey } from '@material-ui/core/colors';
 
 import sources from './source-info';
@@ -21,7 +21,7 @@ class VivViewerWebComponentWrapper extends HTMLElement {
   
     connectedCallback() {
 
-const darkTheme = createMuiTheme({
+const darkTheme = createTheme /* createMuiTheme */({
   palette: {
     type: 'dark',
     primary: grey,

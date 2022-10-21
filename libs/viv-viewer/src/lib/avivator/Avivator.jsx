@@ -7,12 +7,12 @@ import Viewer from './components/Viewer.jsx';
 import Controller from './components/Controller/Controller.jsx';
 import DropzoneWrapper from './components/DropzoneWrapper.jsx';
 import Footer from './components/Footer.jsx';
-// import {store} from '../../../../../../state/state';
+import {store} from '../state';
 
 /* eslint-disable camelcase */
 import create from 'zustand';
 
-//import './index.css';
+import './index.css';
 
 /**
  * This component serves as batteries-included visualization for OME-compliant tiff or zarr images.
@@ -26,8 +26,8 @@ export default function Avivator(props) {
   const isViewerLoading = useViewerStore(store => store.isViewerLoading);
   const source = useViewerStore(store => store.source);
   const useLinkedView = useViewerStore(store => store.useLinkedView);
-  // const useBoundStore = create(store);
-  // const heatmapId=useBoundStore((state) => state.heatmapId);
+  const useBoundStore = create(store);
+  const heatmapId=useBoundStore((state) => state.heatmapId);
 
   useEffect(() => {
     useViewerStore.setState({
