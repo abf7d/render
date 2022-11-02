@@ -13,7 +13,9 @@
           "options": {
             "customWebpackConfig": {
               "path": "custom-webpack.config.js",
-              "replaceDuplicatePlugins": true
+              "mergeRules": {
+                "externals": "replace"
+              }
             },
             "outputPath": "dist/apps/render-ui",
             "index": "apps/render-ui/src/index.html",
@@ -63,6 +65,9 @@
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "render-ui:build"
+          },
           "configurations": {
             "production": {
               "browserTarget": "render-ui:build:production"

@@ -219,7 +219,7 @@ const Controller = () => {
           marginBottom: '8px'
         }}
       />
-      {/* {<VolumeButton />}
+      {<VolumeButton />}
       {<PictureInPictureToggle />}
       {<SideBySideToggle />}
       {useLinkedView && !use3d && (
@@ -227,7 +227,7 @@ const Controller = () => {
           <ZoomLockToggle />
           <PanLockToggle />
         </>
-      )} */}
+      )}
     </Menu>
   );
 };

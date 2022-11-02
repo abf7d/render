@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// @ts-ignore
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
@@ -10,9 +13,9 @@ import {
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { grey } from '@material-ui/core/colors';
 
-import sources from './source-info';
-import Avivator from './Avivator';
-import { getNameFromUrl } from './utils';
+import sources from './avivator/source-info';
+import Avivator from './avivator/Avivator.jsx';
+import { getNameFromUrl } from './avivator/utils';
 
 class VivViewerWebComponentWrapper extends HTMLElement {
   constructor() {
@@ -43,7 +46,7 @@ class VivViewerWebComponentWrapper extends HTMLElement {
       return new URLSearchParams(useLocation().search);
     }
 
-    function RoutedAvivator(props: any) {
+    function RoutedAvivator(props) {
       const query = useQuery();
       const url = query.get('image_url');
       const {
@@ -54,7 +57,9 @@ class VivViewerWebComponentWrapper extends HTMLElement {
           urlOrFile: url,
           description: getNameFromUrl(url),
         };
+        
         return (
+          // <div>one</div>
           <ThemeProvider theme={darkTheme}>
             <Avivator source={urlSrouce} history={history} />
           </ThemeProvider>
@@ -62,6 +67,7 @@ class VivViewerWebComponentWrapper extends HTMLElement {
       }
       const source = getRandomSource();
       return (
+        // <div>two</div>
         <ThemeProvider theme={darkTheme}>
           <Avivator source={source} history={history} isDemoImage />
         </ThemeProvider>
@@ -81,7 +87,7 @@ class VivViewerWebComponentWrapper extends HTMLElement {
         <Switch>
           <Route
             path="/"
-            render={(routeProps: any) => <RoutedAvivator routeProps={routeProps} />}
+            render={(routeProps) => <RoutedAvivator routeProps={routeProps} />}
           />
         </Switch>
       </Router>,
