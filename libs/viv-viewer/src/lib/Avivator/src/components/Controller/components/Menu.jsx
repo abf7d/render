@@ -30,6 +30,8 @@ const useStyles = makeStyles(theme => ({
       display: 'none',
       background: 'transparent'
     },
+    position:'fixed',
+    top:'528px',
     scrollbarWidth: 'none'
   },
   typography: {
@@ -165,7 +167,6 @@ function Menu({ children, ...props }) {
   return isControllerOn ? (
     <Box position="absolute" right={0} top={0} m={1} className={classes.root}>
       <Paper className={classes.paper}>
-        <Header />
         <Grid container direction="column" justify="center" alignItems="center">
           {children.map((child, i) => {
             return (

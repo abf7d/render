@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import shallow from 'zustand/shallow';
+import {store} from "../../../../../../../../state/state";
 
 import { MAX_CHANNELS } from '../../../constants';
 import {
@@ -77,6 +78,10 @@ const AddChannel = () => {
     setIsChannelLoading,
     setPropertiesForChannel
   ]);
+  useEffect(()=>{
+    store.setState({handleChannelAdd});
+  },[selections]); // For exposing functionality externally
+  
   return (
     <Button
       disabled={selections.length === MAX_CHANNELS || isViewerLoading}

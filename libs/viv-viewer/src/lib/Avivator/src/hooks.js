@@ -74,9 +74,10 @@ export const useImage = (source, history) => {
         });
         if (use3d) toggleUse3d();
         // eslint-disable-next-line no-unused-expressions
+        /*
         history?.push(
           typeof urlOrFile === 'string' ? `?image_url=${urlOrFile}` : ''
-        );
+        );*/
       }
     }
     if (source) changeLoader();

@@ -7,12 +7,12 @@ import Viewer from './components/Viewer.jsx';
 import Controller from './components/Controller/Controller.jsx';
 import DropzoneWrapper from './components/DropzoneWrapper.jsx';
 import Footer from './components/Footer.jsx';
-import {store} from '../state';
+import {store} from '../../../../../state/state';
 
 /* eslint-disable camelcase */
 import create from 'zustand';
 
-import './index.css';
+//import './index.css';
 
 /**
  * This component serves as batteries-included visualization for OME-compliant tiff or zarr images.
@@ -28,21 +28,27 @@ export default function Avivator(props) {
   const useLinkedView = useViewerStore(store => store.useLinkedView);
   const useBoundStore = create(store);
   const heatmapId=useBoundStore((state) => state.heatmapId);
+  const urls=useBoundStore((state) => state.urls);
+  const processedData=useBoundStore((state) => state.processedData);
+  const heatmapOpacity=useBoundStore((state) => state.heatmapOpacity);
+  const overlayVisibilities=useBoundStore((state) => state.overlayVisibilities)
 
   useEffect(() => {
-    useViewerStore.setState({
-      source: initSource,
-      isNoImageUrlSnackbarOn: isDemoImage
-    });
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (urls[0] !== undefined) {
+      useViewerStore.setState({
+        source: {
+          "urlOrFile": urls[0],
+          "description": ""
+      },
+        isNoImageUrlSnackbarOn: isDemoImage
+      });
+    }
+  }, [urls]); // eslint-disable-line react-hooks/exhaustive-deps
   useImage(source, history);
   return (
     <>
-      <h1 style={{color:'white', position: 'fixed'}}>{heatmapId}</h1>
-      <DropzoneWrapper>{!isViewerLoading && <Viewer />}</DropzoneWrapper>
+      {!isViewerLoading && <Viewer urls={urls} processedData={processedData} heatmapId={heatmapId} heatmapOpacity={heatmapOpacity} overlayVisibilities={overlayVisibilities}/>}
       <Controller />
-      <SnackBars />
-      {!useLinkedView && <Footer />}
     </>
   );
 }

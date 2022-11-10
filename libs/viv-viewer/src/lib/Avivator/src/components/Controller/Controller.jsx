@@ -30,6 +30,8 @@ import {
 import { guessRgb, useWindowSize, getSingleSelectionStats } from '../../utils';
 import { GLOBAL_SLIDER_DIMENSION_FIELDS } from '../../constants';
 
+import { store } from '../../../../../../../state/state';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -108,6 +110,7 @@ const Controller = () => {
   const globalControlLabels = labels.filter(label =>
     GLOBAL_SLIDER_DIMENSION_FIELDS.includes(label)
   );
+  const onSelectionChanges=[]; // For exposing functionality externally
   const channelControllers = ids.map((id, i) => {
     const onSelectionChange = e => {
       const selection = {
@@ -133,6 +136,7 @@ const Controller = () => {
         setPropertiesForChannel(i, { selections: selection });
       });
     };
+    onSelectionChanges.push(onSelectionChange); // For exposing functionality externally
     const toggleIsOn = () => toggleIsOnSetter(i);
     const handleSliderChange = (e, v) =>
       setPropertiesForChannel(i, { contrastLimits: v });
@@ -167,6 +171,7 @@ const Controller = () => {
       </Grid>
     );
   });
+  store.setState({onSelectionChanges}); // For exposing functionality externally
   const globalControllers = globalControlLabels.map(label => {
     const size = shape[labels.indexOf(label)];
     // Only return a slider if there is a "stack."
@@ -181,16 +186,6 @@ const Controller = () => {
   };
   return (
     <Menu maxHeight={viewSize.height}>
-      <Tabs
-        value={tab}
-        onChange={handleTabChange}
-        aria-label="simple tabs example"
-        style={{ height: '24px', minHeight: '24px' }}
-      >
-        <Tab label="Channels" style={{ fontSize: '.75rem', bottom: 12 }} />
-        <Tab label="Volume" style={{ fontSize: '.75rem', bottom: 12 }} />
-      </Tabs>
-      <Divider />
       <TabPanel value={tab} index={0}>
         {useColormap && <ColormapSelect />}
         {useLens && !colormap && !use3d && shape[labels.indexOf('c')] > 1 && (
@@ -219,7 +214,6 @@ const Controller = () => {
           marginBottom: '8px'
         }}
       />
-      {<VolumeButton />}
       {<PictureInPictureToggle />}
       {<SideBySideToggle />}
       {useLinkedView && !use3d && (
