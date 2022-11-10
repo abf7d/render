@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@render/ui": ["libs/ui/src/index.ts"],
       "@render/viv-viewer": ["libs/viv-viewer/src/index.ts"]
     }
   },
