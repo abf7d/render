@@ -1,4 +1,5 @@
-import {TextLayer} from 'deck.gl';
+// @ts-ignore
+import {TextLayer} from '@deck.gl/layers';
 
 export const generateText = (data: unknown, cellSize: number, visible: boolean, entry: string) => {
   return new TextLayer({

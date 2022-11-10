@@ -1,4 +1,5 @@
-import {TextLayer} from 'deck.gl';
+// @ts-ignore
+import {TextLayer} from '@deck.gl/layers';
 
 export const generatePlateText = (data: unknown, visible: boolean) => {
   return new TextLayer({

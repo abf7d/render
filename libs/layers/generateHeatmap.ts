@@ -1,4 +1,5 @@
-import {GridCellLayer} from 'deck.gl';
+// @ts-ignore
+import {GridCellLayer} from '@deck.gl/layers';
 
 export const generateHeatmap = (
   data: unknown,
