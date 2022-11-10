@@ -23,6 +23,8 @@
     "@deck.gl/geo-layers": "~8.6.7",
     "@deck.gl/layers": "~8.6.7",
     "@deck.gl/react": "~8.6.7",
+    "@deck.gl/mesh-layers": "~8.6.7",
+    "@deck.gl/extensions": "~8.6.7",
     "@labshare/viv": "^0.12.12",
     "@luma.gl/core": "^8.5.10",
     "@luma.gl/gltools": "^8.5.10",
