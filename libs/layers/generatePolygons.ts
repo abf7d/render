@@ -1,6 +1,6 @@
 // @ts-ignore
 
-import {PolygonLayer} from '@deck.gl/layers';
+import {PolygonLayer} from 'deck.gl';
 
 export const generatePolygons = (data: any, visible: boolean, opacity: number) => {
   

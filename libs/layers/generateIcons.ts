@@ -1,5 +1,5 @@
 // @ts-ignore
-import {IconLayer} from '@deck.gl/layers';
+import {IconLayer} from 'deck.gl';
 import {iconOffsetX, iconOffsetY} from './constants';
 
 export const generateIcons = (data: unknown[], cellSize: number, visible: boolean) => {
