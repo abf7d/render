@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     maxHeight: props => `${props.maxHeight - theme.spacing(4)}px`,
     width: '365px',
+    display: 'none',
     overflowX: 'hidden',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
