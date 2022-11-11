@@ -1,4 +1,3 @@
-// @ts-ignore
 import {GridCellLayer} from 'deck.gl';
 
 export const generateHeatmap = (

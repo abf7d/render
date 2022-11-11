@@ -1,4 +1,3 @@
-// @ts-ignore
 import {IconLayer} from 'deck.gl';
 import {iconOffsetX, iconOffsetY} from './constants';
 

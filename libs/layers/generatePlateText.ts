@@ -1,4 +1,3 @@
-// @ts-ignore
 import {TextLayer} from 'deck.gl';
 
 export const generatePlateText = (data: unknown, visible: boolean) => {
