@@ -24,7 +24,7 @@ class ImageMenuWebComponent extends HTMLElement {
         pixelValuesContainer.style.position='absolute';
         pixelValuesContainer.style.zIndex='-1';
         pixelValuesContainer.style.top="2px";
-        pixelValuesContainer.style.left="8px";
+        pixelValuesContainer.style.left="15px";
         let numberOfChannels: number;
         useViewerStore.subscribe((currentState: any, previousState: any)=>{
             if(JSON.stringify(currentState.pixelValues)!==JSON.stringify(previousState.pixelValues)) {
@@ -90,6 +90,7 @@ class ImageMenuWebComponent extends HTMLElement {
          });
 
          const addChannelButton=shadow.appendChild(document.createElement('button'));
+         addChannelButton.style.marginLeft="15px";
          addChannelButton.textContent="Add Channel";
          addChannelButton.onclick=()=>{
              store.getState().handleChannelAdd();
