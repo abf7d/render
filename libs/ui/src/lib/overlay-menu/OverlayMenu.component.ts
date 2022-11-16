@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import "./OverlayMenuWebComponent";
 
 @Component({
-  selector: 'myorg-OverlayMenu',
+  selector: 'render-OverlayMenu',
   templateUrl: './OverlayMenu.component.html',
   styleUrls: ['./OverlayMenu.component.css'],
 })
