@@ -1,4 +1,5 @@
 {
   "overlayUrl": "https://files.scb-ncats.io/pyramids/overlays/overlay2.json",
-  "plateUrl": "https://files.scb-ncats.io/pyramids/eastman/"
+  "plateUrl": "https://files.scb-ncats.io/pyramids/eastman/",
+  "baseFormulaUrl": "https://vast-sands-14867.herokuapp.com/https://tripod.nih.gov/servlet/renderServletv16?background=transparent&format=png&structure="
 }

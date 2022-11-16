@@ -31,8 +31,7 @@ export class AppComponent {
       .then((data) => {
         const processedData = processOverlayData({
           overlayData: data.slice(0, numberOfPlates),
-          baseChemicalUrl:
-            'https://vast-sands-14867.herokuapp.com/https://tripod.nih.gov/servlet/renderServletv16?background=transparent&format=png&structure=',
+          baseChemicalUrl: config.baseFormulaUrl,
           cellSize: 3263,
           plateSpacingX: 100000,
           plateSpacingY: 100000,
