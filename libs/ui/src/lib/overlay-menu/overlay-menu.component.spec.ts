@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OverlayMenuComponent } from './OverlayMenu.component';
+import { OverlayMenuComponent } from './overlay-menu.component';
 
 describe('OverlayMenuComponent', () => {
   let component: OverlayMenuComponent;
