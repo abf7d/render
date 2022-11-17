@@ -15,23 +15,18 @@ export class VivViewComponent implements OnInit {
   }
 
   @Input() set heatmapIds(value: {label: string, value: string}[] | undefined) {
-    //this.heatmapIds=value;
     value !== undefined && store.setState({
       heatmapIds: value as any,
     });
   }
 
   @Input() set imageUrls(value: string[] | undefined) {
-    console.log('imageUrls',value)
-    //this.heatmapIds=value;
     value !== undefined && store.setState({
       urls: value as any,
     });
   }
 
   @Input() set overlayData(value: any) {
-    //this.heatmapIds=value;
-    console.log('overlayData',value)
     value !== undefined && store.setState({
       processedData: value,
     });
