@@ -146,6 +146,32 @@
       },
       "tags": []
     },
+    "views": {
+      "projectType": "library",
+      "root": "libs/views",
+      "sourceRoot": "libs/views/src",
+      "prefix": "render",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/views"],
+          "options": {
+            "jestConfig": "libs/views/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/views/src/**/*.ts",
+              "libs/views/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "viv-viewer": {
       "root": "libs/viv-viewer",
       "sourceRoot": "libs/viv-viewer/src",
