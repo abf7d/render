@@ -12,19 +12,18 @@ interface Todo {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  heatmapIds: any;
+  heatmapIds: {label: string, value: string}[] | undefined;
+  imageUrls: string[] | undefined;
+  overlayData: any;
 
   ngOnInit(): void {
     const numberOfPlates = 50;
     fetch(config.plateUrl)
       .then((response) => response.json())
       .then((data) => {
-        const urls = data
+        this.imageUrls = data
           .map((item: { name: string }) => config.plateUrl + item.name)
           .slice(0, numberOfPlates);
-        store.setState({
-          urls,
-        });
       });
     fetch(config.overlayUrl)
       .then((response) => response.json())
@@ -39,9 +38,7 @@ export class AppComponent {
           wellsPerRow: 24,
           wellsPerColumn: 16,
         });
-        store.setState({
-          processedData,
-        });
+        this.overlayData=processedData;
         this.heatmapIds = data[0].gridCellLayers
           .map((d: any) => ({ label: d.id, value: d.id }))
           .concat({ label: 'None', value: null });

@@ -18,7 +18,7 @@ export class OverlayMenuComponent implements OnInit {
   ngOnInit() {}
 
   ngOnChanges(changes: any) {
-    console.log(changes, 'changes')
+    console.log(changes, 'changes',this.overlayMenuVIewChild.nativeElement)
     this.overlayMenuVIewChild.nativeElement.data=changes.heatmapIds.currentValue;
   }
 }
