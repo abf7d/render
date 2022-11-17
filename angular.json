@@ -1,6 +1,32 @@
 {
   "version": 1,
   "projects": {
+    "menu-components": {
+      "projectType": "library",
+      "root": "libs/menu-components",
+      "sourceRoot": "libs/menu-components/src",
+      "prefix": "render",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/menu-components"],
+          "options": {
+            "jestConfig": "libs/menu-components/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/menu-components/src/**/*.ts",
+              "libs/menu-components/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "render-ui": {
       "projectType": "application",
       "root": "apps/render-ui",
@@ -122,29 +148,6 @@
       },
       "tags": [],
       "implicitDependencies": ["render-ui"]
-    },
-    "ui": {
-      "projectType": "library",
-      "root": "libs/ui",
-      "sourceRoot": "libs/ui/src",
-      "prefix": "render",
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui"],
-          "options": {
-            "jestConfig": "libs/ui/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
-          }
-        }
-      },
-      "tags": []
     },
     "views": {
       "projectType": "library",

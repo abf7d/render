@@ -1,12 +1,18 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
 import { ImageMenuComponent } from './image-menu/image-menu.component';
+import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [OverlayMenuComponent, ImageMenuComponent],
-  exports: [OverlayMenuComponent, ImageMenuComponent],
+  declarations: [
+    ImageMenuComponent,
+    OverlayMenuComponent
+  ],
+  exports: [
+    ImageMenuComponent,
+    OverlayMenuComponent
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class UiModule {}
+export class MenuComponentsModule {}
