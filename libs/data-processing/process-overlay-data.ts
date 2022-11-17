@@ -31,9 +31,7 @@ export const processOverlayData:
             overlayData[i].textLayers[1].data[j]?.text;
             wellOverlayData[i * numberOfWells + j].fillColors = overlayData[
             i
-            ].gridCellLayers.reduce((acc: any, entry: any) => ({...acc, [entry.id]: entry.data[j].fillColor}), {} /*, {
-            undefined: [0, 0, 0, 1]
-            }*/);
+            ].gridCellLayers.reduce((acc: any, entry: any) => ({...acc, [entry.id]: entry.data[j].fillColor}), {});
         }
         plateOverlayData.push({
             plateNumber: i,
