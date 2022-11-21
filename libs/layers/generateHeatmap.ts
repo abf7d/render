@@ -9,6 +9,7 @@ export const generateHeatmap = (
   selectedHeatmap: string
 ) => {
   return new GridCellLayer({
+    id: 'grid-cell-layer-#detail#',
     data,
     //visible,
     pickable: true,
