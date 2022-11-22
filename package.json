@@ -1,5 +1,5 @@
 {
-  "name": "render",
+  "name": "@labshare/render",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -9,7 +9,6 @@
     "build": "nx build",
     "test": "nx test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~13.1.0",
     "@angular/common": "~13.1.0",
