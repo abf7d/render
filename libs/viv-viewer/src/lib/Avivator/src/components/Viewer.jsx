@@ -170,26 +170,6 @@ useEffect(()=>{
 
 
 const handleZoom = (vws) => {
-  //const {viewState} = vws;
-  //const {zoom} = viewState;
-  //setPyramidResolutionFromZoom(vws);
-  /*
-  if (vws.viewState.zoom > -5 && vws.oldViewState.zoom < -5) {
-    regenerateWellHeatmap(vws.viewState.zoom);
-  }
-  if (vws.viewState.zoom > -5 && vws.viewState.zoom < -3) {
-    setHeatmapLayer([
-      generateHeatmap(
-        selectedHeatmap,
-        props.processedData.wellOverlayData,
-        props.processedData.cellSize,
-        true,
-        (-vws.viewState.zoom - 3) / (5 - 3),
-        props.heatmapOpacity
-      )
-    ]);
-  }
-  */
   setZoomState(vws.viewState.zoom);
 
   if (
