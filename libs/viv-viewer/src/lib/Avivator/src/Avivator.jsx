@@ -12,7 +12,6 @@ import {store} from '../../../../../state/state';
 /* eslint-disable camelcase */
 import create from 'zustand';
 
-//import './index.css';
 
 /**
  * This component serves as batteries-included visualization for OME-compliant tiff or zarr images.
