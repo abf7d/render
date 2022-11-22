@@ -7,17 +7,7 @@ import "./OverlayMenuWebComponent";
   styleUrls: ['./overlay-menu.component.css'],
 })
 export class OverlayMenuComponent implements OnInit {
-  @Input() heatmapIds: any = [];
-
-
-  /*private */count: number = 0;
-  @ViewChild("overlayMenuVIewChild") overlayMenuVIewChild: any;
-
   constructor() {}
 
   ngOnInit() {}
-
-  ngOnChanges(changes: any) {
-    this.overlayMenuVIewChild.nativeElement.data=changes.heatmapIds.currentValue;
-  }
 }
