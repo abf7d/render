@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import "./OverlayMenuWebComponent";
+import './OverlayMenuWebComponent';
 
 @Component({
   selector: 'render-overlay-menu',

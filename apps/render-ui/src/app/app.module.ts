@@ -7,11 +7,7 @@ import { ViewsModule } from '@render/views';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    ViewsModule
-  ],
+  imports: [BrowserModule, HttpClientModule, ViewsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

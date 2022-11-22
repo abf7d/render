@@ -9,7 +9,7 @@ import {
   useImageSettingsStore,
   useLoader,
   useMetadata,
-  useViewerStore
+  useViewerStore,
 } from './state';
 import {
   createLoader,
@@ -17,17 +17,21 @@ import {
   guessRgb,
   getMultiSelectionStats,
   getBoundingCube,
-  isInterleaved
+  isInterleaved,
 } from './utils';
 import { COLOR_PALLETE, FILL_PIXEL_VALUE } from './constants';
 
 export const useImage = (source, history) => {
   const [use3d, toggleUse3d, toggleIsOffsetsSnackbarOn] = useViewerStore(
-    store => [store.use3d, store.toggleUse3d, store.toggleIsOffsetsSnackbarOn],
+    (store) => [
+      store.use3d,
+      store.toggleUse3d,
+      store.toggleIsOffsetsSnackbarOn,
+    ],
     shallow
   );
   const [lensEnabled, toggleLensEnabled] = useImageSettingsStore(
-    store => [store.lensEnabled, store.toggleLensEnabled],
+    (store) => [store.lensEnabled, store.toggleLensEnabled],
     shallow
   );
   const loader = useLoader();
@@ -42,17 +46,17 @@ export const useImage = (source, history) => {
       const newLoader = await createLoader(
         urlOrFile,
         toggleIsOffsetsSnackbarOn,
-        message =>
+        (message) =>
           useViewerStore.setState({
-            loaderErrorSnackbar: { on: true, message }
+            loaderErrorSnackbar: { on: true, message },
           })
       );
       let nextMeta;
       let nextLoader;
       if (Array.isArray(newLoader)) {
         if (newLoader.length > 1) {
-          nextMeta = newLoader.map(l => l.metadata);
-          nextLoader = newLoader.map(l => l.data);
+          nextMeta = newLoader.map((l) => l.metadata);
+          nextLoader = newLoader.map((l) => l.data);
         } else {
           nextMeta = newLoader[0].metadata;
           nextLoader = newLoader[0].data;
@@ -69,7 +73,7 @@ export const useImage = (source, history) => {
         unstable_batchedUpdates(() => {
           useChannelsStore.setState({ loader: nextLoader });
           useViewerStore.setState({
-            metadata: nextMeta
+            metadata: nextMeta,
           });
         });
         if (use3d) toggleUse3d();
@@ -101,17 +105,17 @@ export const useImage = (source, history) => {
           newContrastLimits = [
             [0, 255],
             [0, 255],
-            [0, 255]
+            [0, 255],
           ];
           newDomains = [
             [0, 255],
             [0, 255],
-            [0, 255]
+            [0, 255],
           ];
           newColors = [
             [255, 0, 0],
             [0, 255, 0],
-            [0, 0, 255]
+            [0, 0, 255],
           ];
         }
         if (lensEnabled) {
@@ -122,7 +126,7 @@ export const useImage = (source, history) => {
         const stats = await getMultiSelectionStats({
           loader,
           selections: newSelections,
-          use3d: false
+          use3d: false,
         });
         newDomains = stats.domains;
         newContrastLimits = stats.contrastLimits;
@@ -133,7 +137,7 @@ export const useImage = (source, history) => {
             : newDomains.map((_, i) => COLOR_PALLETE[i]);
         useViewerStore.setState({
           useLens: channelOptions.length !== 1,
-          useColormap: true
+          useColormap: true,
         });
       }
       useChannelsStore.setState({
@@ -142,21 +146,21 @@ export const useImage = (source, history) => {
         domains: newDomains,
         contrastLimits: newContrastLimits,
         colors: newColors,
-        channelsVisible: newColors.map(() => true)
+        channelsVisible: newColors.map(() => true),
       });
       useViewerStore.setState({
-        isChannelLoading: newSelections.map(i => !i),
+        isChannelLoading: newSelections.map((i) => !i),
         isViewerLoading: false,
         pixelValues: new Array(newSelections.length).fill(FILL_PIXEL_VALUE),
         // Set the global selections (needed for the UI). All selections have the same global selection.
         globalSelection: newSelections[0],
-        channelOptions
+        channelOptions,
       });
       const [xSlice, ySlice, zSlice] = getBoundingCube(loader);
       useImageSettingsStore.setState({
         xSlice,
         ySlice,
-        zSlice
+        zSlice,
       });
     };
     if (metadata) changeSettings();
@@ -164,23 +168,23 @@ export const useImage = (source, history) => {
 };
 
 export const useDropzone = () => {
-  const handleSubmitFile = files => {
+  const handleSubmitFile = (files) => {
     let newSource;
     if (files.length === 1) {
       newSource = {
         urlOrFile: files[0],
         // Use the trailing part of the URL (file name, presumably) as the description.
-        description: files[0].name
+        description: files[0].name,
       };
     } else {
       newSource = {
         urlOrFile: files,
-        description: 'data.zarr'
+        description: 'data.zarr',
       };
     }
     useViewerStore.setState({ source: newSource });
   };
   return useReactDropzone({
-    onDrop: handleSubmitFile
+    onDrop: handleSubmitFile,
   });
 };

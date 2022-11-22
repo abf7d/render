@@ -7,7 +7,7 @@ export default function DropzoneWrapper({ children }) {
   return (
     <div
       /* eslint-disable-next-line react/jsx-props-no-spreading */
-      {...getRootProps({ onClick: event => event.stopPropagation() })}
+      {...getRootProps({ onClick: (event) => event.stopPropagation() })}
     >
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <input {...getInputProps()} />

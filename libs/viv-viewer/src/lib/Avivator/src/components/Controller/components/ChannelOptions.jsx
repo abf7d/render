@@ -12,25 +12,25 @@ import ColorPalette from './ColorPalette.jsx';
 
 const useStyles = makeStyles(() => ({
   paper: {
-    backgroundColor: 'rgba(0, 0, 0, 0.75)'
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
   },
   span: {
     width: '70px',
     textAlign: 'center',
     paddingLeft: '2px',
-    paddingRight: '2px'
+    paddingRight: '2px',
   },
   colors: {
     '&:hover': {
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
     },
     paddingLeft: '2px',
-    paddingRight: '2px'
-  }
+    paddingRight: '2px',
+  },
 }));
 
 function ChannelOptions({ handleRemoveChannel, handleColorSelect, disabled }) {
-  const [open, toggle] = useReducer(v => !v, false);
+  const [open, toggle] = useReducer((v) => !v, false);
   const anchorRef = useRef(null);
 
   const classes = useStyles();

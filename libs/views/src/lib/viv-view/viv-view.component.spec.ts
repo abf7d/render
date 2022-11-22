@@ -8,9 +8,8 @@ describe('VivViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VivViewComponent ]
-    })
-    .compileComponents();
+      declarations: [VivViewComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

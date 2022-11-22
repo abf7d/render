@@ -11,31 +11,31 @@ import { getDefaultInitialViewState } from '@labshare/viv';
 import {
   useImageSettingsStore,
   useViewerStore,
-  useLoader
+  useLoader,
 } from '../../../state';
 import { useWindowSize } from '../../../utils';
 
-const useStyles = makeStyles(theme =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     enabled: {
-      marginLeft: '4px'
+      marginLeft: '4px',
     },
     disabled: {
       color: theme.palette.text.disabled,
-      marginLeft: '4px'
-    }
+      marginLeft: '4px',
+    },
   })
 );
 
 const CameraOptions = () => {
   const loader = useLoader();
   const [useFixedAxis, toggleUseFixedAxis] = useImageSettingsStore(
-    store => [store.useFixedAxis, store.toggleUseFixedAxis],
+    (store) => [store.useFixedAxis, store.toggleUseFixedAxis],
     shallow
   );
-  const [viewState, use3d] = useViewerStore(store => [
+  const [viewState, use3d] = useViewerStore((store) => [
     store.viewState,
-    store.use3d
+    store.use3d,
   ]);
   const { height, width } = useWindowSize();
   const classes = useStyles();
@@ -63,8 +63,8 @@ const CameraOptions = () => {
               ...viewState,
               ...getDefaultInitialViewState(loader, { height, width }, 1, true),
               rotationX: 0,
-              rotationOrbit: 0
-            }
+              rotationOrbit: 0,
+            },
           })
         } // eslint-disable-line react/jsx-curly-newline
         disabled={!use3d}

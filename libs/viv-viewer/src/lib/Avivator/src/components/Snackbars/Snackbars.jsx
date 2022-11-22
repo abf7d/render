@@ -7,7 +7,7 @@ import {
   LoaderError,
   OffsetsWarning,
   NoImageUrlInfo,
-  VolumeRenderingWarning
+  VolumeRenderingWarning,
 } from './SnackbarAlerts.jsx';
 import { useViewerStore } from '../../state';
 
@@ -19,16 +19,16 @@ const SnackBars = () => {
     toggleIsOffsetsSnackbarOn,
     toggleIsNoImageUrlSnackbarOn,
     isVolumeRenderingWarningOn,
-    toggleIsVolumeRenderingWarningOn
+    toggleIsVolumeRenderingWarningOn,
   ] = useViewerStore(
-    store => [
+    (store) => [
       store.isOffsetsSnackbarOn,
       store.loaderErrorSnackbar,
       store.isNoImageUrlSnackbarOn,
       store.toggleIsOffsetsSnackbarOn,
       store.toggleIsNoImageUrlSnackbarOn,
       store.isVolumeRenderingWarningOn,
-      store.toggleIsVolumeRenderingWarningOn
+      store.toggleIsVolumeRenderingWarningOn,
     ],
     shallow
   );
@@ -53,7 +53,7 @@ const SnackBars = () => {
         <Alert
           onClose={() =>
             useViewerStore.setState({
-              loaderErrorSnackbar: { on: false, message: null }
+              loaderErrorSnackbar: { on: false, message: null },
             })
           } // eslint-disable-line react/jsx-curly-newline
           severity="error"

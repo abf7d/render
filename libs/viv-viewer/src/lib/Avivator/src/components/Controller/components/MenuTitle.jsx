@@ -8,11 +8,11 @@ import { useViewerStore } from '../../../state';
 
 const hideButtonStyle = {
   marginRight: '4.5px',
-  marginTop: '3px'
+  marginTop: '3px',
 };
 function MenuTitle() {
   const toggleIsControllerOn = useViewerStore(
-    store => store.toggleIsControllerOn
+    (store) => store.toggleIsControllerOn
   );
   return (
     <Grid container direction="row" justify="flex-end" alignItems="center">

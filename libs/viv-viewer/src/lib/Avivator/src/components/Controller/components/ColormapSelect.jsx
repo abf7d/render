@@ -7,8 +7,8 @@ import { COLORMAP_OPTIONS } from '../../../constants';
 import { useImageSettingsStore, useViewerStore } from '../../../state';
 
 function ColormapSelect() {
-  const colormap = useImageSettingsStore(store => store.colormap);
-  const isViewerLoading = useViewerStore(store => store.isViewerLoading);
+  const colormap = useImageSettingsStore((store) => store.colormap);
+  const isViewerLoading = useViewerStore((store) => store.isViewerLoading);
   return (
     <FormControl fullWidth>
       <InputLabel htmlFor="colormap-select">
@@ -16,18 +16,18 @@ function ColormapSelect() {
       </InputLabel>
       <Select
         native
-        onChange={e =>
+        onChange={(e) =>
           useImageSettingsStore.setState({ colormap: e.target.value })
         }
         value={colormap}
         inputProps={{
           name: 'colormap',
-          id: 'colormap-select'
+          id: 'colormap-select',
         }}
         disabled={isViewerLoading}
       >
         <option aria-label="None" value="" />
-        {COLORMAP_OPTIONS.map(name => (
+        {COLORMAP_OPTIONS.map((name) => (
           <option key={name} value={name}>
             {name}
           </option>

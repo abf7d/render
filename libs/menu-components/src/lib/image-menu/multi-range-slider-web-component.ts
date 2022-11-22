@@ -1,6 +1,6 @@
-class MultiRangeSlider extends HTMLElement{
-    connectedCallback() {
-        this.attachShadow({mode:"open"}).innerHTML=`
+class MultiRangeSlider extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({ mode: 'open' }).innerHTML = `
             <style>
             body {
                 background-color: #666;
@@ -188,16 +188,32 @@ class MultiRangeSlider extends HTMLElement{
     <div inverse-left style="width:70%;"></div>
     <div inverse-right style="width:70%;"></div>
     <div range style="left:30%;right:40%;"></div>
-    <span thumb style="left:${(Number(this.getAttribute('value1')))/Number(this.getAttribute('max'))*100}%;"></span>
-    <span thumb style="left:${(Number(this.getAttribute('value2')))/Number(this.getAttribute('max'))*100}%;"></span>
-    <div sign style="left:${(Number(this.getAttribute('value1')))/Number(this.getAttribute('max'))*100}%;">
+    <span thumb style="left:${
+      (Number(this.getAttribute('value1')) / Number(this.getAttribute('max'))) *
+      100
+    }%;"></span>
+    <span thumb style="left:${
+      (Number(this.getAttribute('value2')) / Number(this.getAttribute('max'))) *
+      100
+    }%;"></span>
+    <div sign style="left:${
+      (Number(this.getAttribute('value1')) / Number(this.getAttribute('max'))) *
+      100
+    }%;">
       <span id="value">${this.getAttribute('value1')}</span>
     </div>
-    <div sign style="left:${(Number(this.getAttribute('value2')))/Number(this.getAttribute('max'))*100}%;">
+    <div sign style="left:${
+      (Number(this.getAttribute('value2')) / Number(this.getAttribute('max'))) *
+      100
+    }%;">
       <span id="value">${this.getAttribute('value2')}</span>
     </div>
   </div>
-  <input type="range" tabindex="0" value="${this.getAttribute('value1')}" min="${this.getAttribute('min')}" max="${this.getAttribute('max')}" step="1" oninput="
+  <input type="range" tabindex="0" value="${this.getAttribute(
+    'value1'
+  )}" min="${this.getAttribute('min')}" max="${this.getAttribute(
+      'max'
+    )}" step="1" oninput="
   this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
   var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
   var children = this.parentNode.childNodes[1].childNodes;
@@ -207,7 +223,11 @@ class MultiRangeSlider extends HTMLElement{
   children[11].childNodes[1].innerHTML=this.value;
   ${this.getAttribute('oninput1')}" />
 
-  <input type="range" tabindex="0" value="${this.getAttribute('value2')}" min="${this.getAttribute('min')}" max="${this.getAttribute('max')}" step="1" oninput="
+  <input type="range" tabindex="0" value="${this.getAttribute(
+    'value2'
+  )}" min="${this.getAttribute('min')}" max="${this.getAttribute(
+      'max'
+    )}" step="1" oninput="
   this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
   var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
   var children = this.parentNode.childNodes[1].childNodes;
@@ -218,7 +238,7 @@ class MultiRangeSlider extends HTMLElement{
   ${this.getAttribute('oninput2')}" />
 </div>
         `;
-    }
+  }
 }
 
-customElements.define('multi-range-slider',MultiRangeSlider);
+customElements.define('multi-range-slider', MultiRangeSlider);

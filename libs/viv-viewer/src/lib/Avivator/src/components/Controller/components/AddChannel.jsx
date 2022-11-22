@@ -2,14 +2,14 @@ import React, { useCallback, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import shallow from 'zustand/shallow';
-import {store} from "../../../../../../../../state/state";
+import { store } from '../../../../../../../../state/state';
 
 import { MAX_CHANNELS } from '../../../constants';
 import {
   useChannelsStore,
   useViewerStore,
   useImageSettingsStore,
-  useLoader
+  useLoader,
 } from '../../../state';
 import { getSingleSelectionStats } from '../../../utils';
 
@@ -19,52 +19,52 @@ const AddChannel = () => {
     isViewerLoading,
     use3d,
     setIsChannelLoading,
-    addIsChannelLoading
+    addIsChannelLoading,
   ] = useViewerStore(
-    store => [
+    (store) => [
       store.globalSelection,
       store.isViewerLoading,
       store.use3d,
       store.setIsChannelLoading,
-      store.addIsChannelLoading
+      store.addIsChannelLoading,
     ],
     shallow
   );
   const [selections, addChannel, setPropertiesForChannel] = useChannelsStore(
-    store => [
+    (store) => [
       store.selections,
       store.addChannel,
-      store.setPropertiesForChannel
+      store.setPropertiesForChannel,
     ],
     shallow
   );
   const loader = useLoader();
   const { labels } = loader[0];
   const handleChannelAdd = useCallback(() => {
-    let selection = Object.fromEntries(labels.map(l => [l, 0]));
+    let selection = Object.fromEntries(labels.map((l) => [l, 0]));
     selection = { ...selection, ...globalSelection };
     const numSelectionsBeforeAdd = selections.length;
     getSingleSelectionStats({
       loader,
       selection,
-      use3d
+      use3d,
     }).then(({ domain, contrastLimits }) => {
       setPropertiesForChannel(numSelectionsBeforeAdd, {
         domains: domain,
         contrastLimits,
-        channelsVisible: true
+        channelsVisible: true,
       });
       useImageSettingsStore.setState({
         onViewportLoad: () => {
           useImageSettingsStore.setState({ onViewportLoad: () => {} });
           setIsChannelLoading(numSelectionsBeforeAdd, false);
-        }
+        },
       });
       addIsChannelLoading(true);
       addChannel({
         selections: selection,
         ids: String(Math.random()),
-        channelsVisible: false
+        channelsVisible: false,
       });
     });
   }, [
@@ -76,12 +76,12 @@ const AddChannel = () => {
     addIsChannelLoading,
     selections,
     setIsChannelLoading,
-    setPropertiesForChannel
+    setPropertiesForChannel,
   ]);
-  useEffect(()=>{
-    store.setState({handleChannelAdd});
-  },[selections]); // For exposing functionality externally
-  
+  useEffect(() => {
+    store.setState({ handleChannelAdd });
+  }, [selections]); // For exposing functionality externally
+
   return (
     <Button
       disabled={selections.length === MAX_CHANNELS || isViewerLoading}

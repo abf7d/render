@@ -8,16 +8,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useImageSettingsStore, useLoader, useViewerStore } from '../state';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   typography: {
-    fontSize: '.8rem'
+    fontSize: '.8rem',
   },
   paper: {
     paddingRight: theme.spacing(1),
     paddingLeft: theme.spacing(1),
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
-    borderRadius: 2
-  }
+    borderRadius: 2,
+  },
 }));
 
 function formatResolutionStatus(current, total, shape) {
@@ -27,11 +27,11 @@ function formatResolutionStatus(current, total, shape) {
 export default function Footer() {
   const classes = useStyles();
   const [use3d, pyramidResolution] = useViewerStore(
-    store => [store.use3d, store.pyramidResolution],
+    (store) => [store.use3d, store.pyramidResolution],
     shallow
   );
   const loader = useLoader();
-  const volumeResolution = useImageSettingsStore(store => store.resolution);
+  const volumeResolution = useImageSettingsStore((store) => store.resolution);
 
   const resolution = use3d ? volumeResolution : pyramidResolution;
   const level = loader[resolution];
@@ -42,7 +42,7 @@ export default function Footer() {
       style={{
         position: 'fixed',
         marginTop: 'calc(5% + 60px)',
-        bottom: 0
+        bottom: 0,
       }}
     >
       <Paper className={classes.paper}>

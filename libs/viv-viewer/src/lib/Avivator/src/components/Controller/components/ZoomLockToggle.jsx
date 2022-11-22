@@ -6,10 +6,10 @@ import { useImageSettingsStore, useViewerStore } from '../../../state';
 
 const ZoomLockToggle = () => {
   const [toggleZoomLock, zoomLock] = useImageSettingsStore(
-    store => [store.toggleZoomLock, store.zoomLock],
+    (store) => [store.toggleZoomLock, store.zoomLock],
     shallow
   );
-  const isViewerLoading = useViewerStore(store => store.isViewerLoading);
+  const isViewerLoading = useViewerStore((store) => store.isViewerLoading);
   return (
     <Button
       disabled={isViewerLoading}

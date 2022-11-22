@@ -20,62 +20,62 @@ import DropzoneButton from './DropzoneButton.jsx';
 import { isMobileOrTablet, getNameFromUrl } from '../../../utils';
 import { useChannelsStore, useViewerStore } from '../../../state';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxHeight: props => `${props.maxHeight - theme.spacing(4)}px`,
+    maxHeight: (props) => `${props.maxHeight - theme.spacing(4)}px`,
     width: '365px',
     display: 'none',
     overflowX: 'hidden',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
       display: 'none',
-      background: 'transparent'
+      background: 'transparent',
     },
-    position:'fixed',
-    top:'528px',
-    scrollbarWidth: 'none'
+    position: 'fixed',
+    top: '528px',
+    scrollbarWidth: 'none',
   },
   typography: {
-    fontSize: '.8rem'
+    fontSize: '.8rem',
   },
   paper: {
     paddingBottom: theme.spacing(2),
     paddingRight: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
-    borderRadius: 2
+    borderRadius: 2,
   },
   item: {
-    width: '100%'
+    width: '100%',
   },
   divider: {
     paddingBottom: theme.spacing(1),
-    paddingTop: theme.spacing(2)
-  }
+    paddingTop: theme.spacing(2),
+  },
 }));
 
 function Header(props) {
-  const image = useChannelsStore(store => store.image);
-  const [source, metadata] = useViewerStore(store => [
+  const image = useChannelsStore((store) => store.image);
+  const [source, metadata] = useViewerStore((store) => [
     store.source,
-    store.metadata
+    store.metadata,
   ]);
   const handleSubmitNewUrl = (event, newUrl) => {
     event.preventDefault();
     const newSource = {
       urlOrFile: newUrl,
       // Use the trailing part of the URL (file name, presumably) as the description.
-      description: getNameFromUrl(newUrl)
+      description: getNameFromUrl(newUrl),
     };
     useViewerStore.setState({ source: newSource });
   };
-  const onImageSelectionChange = e =>
+  const onImageSelectionChange = (e) =>
     useChannelsStore.setState({
-      image: e.target.value
+      image: e.target.value,
     });
   const url = typeof source.urlOrFile === 'string' ? source.urlOrFile : '';
   const [text, setText] = useState(url);
-  const [open, toggle] = useReducer(v => !v, false);
+  const [open, toggle] = useReducer((v) => !v, false);
   const anchorRef = useRef(null);
   const classes = useStyles(props);
 
@@ -120,7 +120,7 @@ function Header(props) {
         </Grid>
         <Grid item xs={11}>
           <form
-            onSubmit={event => {
+            onSubmit={(event) => {
               handleSubmitNewUrl(event, text);
             }}
           >
@@ -131,7 +131,7 @@ function Header(props) {
               size="small"
               fullWidth
               value={text}
-              onChange={e => setText(e.target.value)}
+              onChange={(e) => setText(e.target.value)}
             />
           </form>
         </Grid>
@@ -162,7 +162,7 @@ function Header(props) {
 function Menu({ children, ...props }) {
   const classes = useStyles(props);
   const [isControllerOn, toggleIsControllerOn] = useViewerStore(
-    store => [store.isControllerOn, store.toggleIsControllerOn],
+    (store) => [store.isControllerOn, store.toggleIsControllerOn],
     shallow
   );
   return isControllerOn ? (

@@ -7,11 +7,10 @@ import Viewer from './components/Viewer.jsx';
 import Controller from './components/Controller/Controller.jsx';
 import DropzoneWrapper from './components/DropzoneWrapper.jsx';
 import Footer from './components/Footer.jsx';
-import {store} from '../../../../../state/state';
+import { store } from '../../../../../state/state';
 
 /* eslint-disable camelcase */
 import create from 'zustand';
-
 
 /**
  * This component serves as batteries-included visualization for OME-compliant tiff or zarr images.
@@ -22,31 +21,41 @@ import create from 'zustand';
  * */
 export default function Avivator(props) {
   const { history, source: initSource, isDemoImage } = props;
-  const isViewerLoading = useViewerStore(store => store.isViewerLoading);
-  const source = useViewerStore(store => store.source);
-  const useLinkedView = useViewerStore(store => store.useLinkedView);
+  const isViewerLoading = useViewerStore((store) => store.isViewerLoading);
+  const source = useViewerStore((store) => store.source);
+  const useLinkedView = useViewerStore((store) => store.useLinkedView);
   const useBoundStore = create(store);
-  const heatmapId=useBoundStore((state) => state.heatmapId);
-  const urls=useBoundStore((state) => state.urls);
-  const processedData=useBoundStore((state) => state.processedData);
-  const heatmapOpacity=useBoundStore((state) => state.heatmapOpacity);
-  const overlayVisibilities=useBoundStore((state) => state.overlayVisibilities)
+  const heatmapId = useBoundStore((state) => state.heatmapId);
+  const urls = useBoundStore((state) => state.urls);
+  const processedData = useBoundStore((state) => state.processedData);
+  const heatmapOpacity = useBoundStore((state) => state.heatmapOpacity);
+  const overlayVisibilities = useBoundStore(
+    (state) => state.overlayVisibilities
+  );
 
   useEffect(() => {
     if (urls[0] !== undefined) {
       useViewerStore.setState({
         source: {
-          "urlOrFile": urls[0],
-          "description": ""
-      },
-        isNoImageUrlSnackbarOn: isDemoImage
+          urlOrFile: urls[0],
+          description: '',
+        },
+        isNoImageUrlSnackbarOn: isDemoImage,
       });
     }
   }, [urls]); // eslint-disable-line react-hooks/exhaustive-deps
   useImage(source, history);
   return (
     <>
-      {!isViewerLoading && <Viewer urls={urls} processedData={processedData} heatmapId={heatmapId} heatmapOpacity={heatmapOpacity} overlayVisibilities={overlayVisibilities}/>}
+      {!isViewerLoading && (
+        <Viewer
+          urls={urls}
+          processedData={processedData}
+          heatmapId={heatmapId}
+          heatmapOpacity={heatmapOpacity}
+          overlayVisibilities={overlayVisibilities}
+        />
+      )}
       <Controller />
     </>
   );

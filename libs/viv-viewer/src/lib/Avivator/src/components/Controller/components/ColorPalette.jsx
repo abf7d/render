@@ -13,24 +13,24 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   button: {
     padding: '3px',
     width: '16px',
-    height: '16px'
+    height: '16px',
   },
   icon: {
     width: '17px',
-    height: '17px'
-  }
+    height: '17px',
+  },
 }));
 
 const ColorPalette = ({ handleColorSelect }) => {
   const classes = useStyles();
   return (
     <div className={classes.container} aria-label="color-swatch">
-      {COLOR_PALLETE.map(color => {
+      {COLOR_PALLETE.map((color) => {
         return (
           <IconButton
             className={classes.button}

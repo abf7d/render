@@ -12,7 +12,7 @@ export default function DropzoneButton() {
       style={{
         borderStyle: 'dashed',
         backgroundColor: 'transparent',
-        height: '2rem'
+        height: '2rem',
       }}
       size="small"
       /* eslint-disable-next-line react/jsx-props-no-spreading */

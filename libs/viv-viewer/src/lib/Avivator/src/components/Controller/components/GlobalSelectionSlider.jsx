@@ -11,37 +11,37 @@ import {
   useChannelsStore,
   useViewerStore,
   useImageSettingsStore,
-  useLoader
+  useLoader,
 } from '../../../state';
 
 export default function GlobalSelectionSlider(props) {
   const { size, label } = props;
   const [selections, setPropertiesForChannel] = useChannelsStore(
-    store => [store.selections, store.setPropertiesForChannel],
+    (store) => [store.selections, store.setPropertiesForChannel],
     shallow
   );
   const loader = useLoader();
-  const globalSelection = useViewerStore(store => store.globalSelection);
+  const globalSelection = useViewerStore((store) => store.globalSelection);
   const changeSelection = useCallback(
     debounce(
       (event, newValue) => {
         useViewerStore.setState({
-          isChannelLoading: selections.map(() => true)
+          isChannelLoading: selections.map(() => true),
         });
-        const newSelections = [...selections].map(sel => ({
+        const newSelections = [...selections].map((sel) => ({
           ...sel,
-          [label]: newValue
+          [label]: newValue,
         }));
         getMultiSelectionStats({
           loader,
           selections: newSelections,
-          use3d: false
+          use3d: false,
         }).then(({ domains, contrastLimits }) => {
           unstable_batchedUpdates(() => {
             range(newSelections.length).forEach((channel, j) =>
               setPropertiesForChannel(channel, {
                 domains: domains[j],
-                contrastLimits: contrastLimits[j]
+                contrastLimits: contrastLimits[j],
               })
             );
           });
@@ -49,16 +49,16 @@ export default function GlobalSelectionSlider(props) {
             useImageSettingsStore.setState({
               onViewportLoad: () => {
                 useImageSettingsStore.setState({
-                  onViewportLoad: () => {}
+                  onViewportLoad: () => {},
                 });
                 useViewerStore.setState({
-                  isChannelLoading: selections.map(() => false)
+                  isChannelLoading: selections.map(() => false),
                 });
-              }
+              },
             });
             range(newSelections.length).forEach((channel, j) =>
               setPropertiesForChannel(channel, {
-                selections: newSelections[j]
+                selections: newSelections[j],
               })
             );
           });
@@ -81,8 +81,8 @@ export default function GlobalSelectionSlider(props) {
             useViewerStore.setState({
               globalSelection: {
                 ...globalSelection,
-                [label]: newValue
-              }
+                [label]: newValue,
+              },
             });
             if (event.type === 'keydown') {
               changeSelection(event, newValue);
@@ -91,7 +91,7 @@ export default function GlobalSelectionSlider(props) {
           onChangeCommitted={changeSelection}
           valueLabelDisplay="auto"
           getAriaLabel={() => `${label} slider`}
-          marks={range(size).map(val => ({ value: val }))}
+          marks={range(size).map((val) => ({ value: val }))}
           min={0}
           max={size}
           orientation="horizontal"

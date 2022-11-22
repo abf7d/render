@@ -11,15 +11,15 @@ function RenderingModeSelect({ value, handleChange, disabled }) {
       <InputLabel htmlFor="rendering-mode-select">Rendering Mode</InputLabel>
       <Select
         native
-        onChange={e => handleChange(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
         value={value}
         inputProps={{
           name: 'rendering-mode',
-          id: 'rendering-mode-select'
+          id: 'rendering-mode-select',
         }}
         disabled={disabled}
       >
-        {Object.values(RENDERING_MODES).map(name => (
+        {Object.values(RENDERING_MODES).map((name) => (
           <option key={name} value={name}>
             {name}
           </option>

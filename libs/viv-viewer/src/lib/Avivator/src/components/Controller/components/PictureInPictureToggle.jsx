@@ -6,11 +6,11 @@ import { useImageSettingsStore, useViewerStore } from '../../../state';
 
 const PictureInPictureToggle = () => {
   const [isOverviewOn, toggleIsOverviewOn] = useImageSettingsStore(
-    store => [store.isOverviewOn, store.toggleIsOverviewOn],
+    (store) => [store.isOverviewOn, store.toggleIsOverviewOn],
     shallow
   );
   const [isViewerLoading, useLinkedView, use3d] = useViewerStore(
-    store => [store.isViewerLoading, store.useLinkedView, store.use3d],
+    (store) => [store.isViewerLoading, store.useLinkedView, store.use3d],
     shallow
   );
   return (

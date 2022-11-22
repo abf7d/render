@@ -9,7 +9,7 @@ import {
   getChannelStats,
   RENDERING_MODES,
   ColorPalette3DExtensions,
-  AdditiveColormap3DExtensions
+  AdditiveColormap3DExtensions,
   // eslint-disable-next-line import/no-unresolved
 } from '@labshare/viv';
 
@@ -49,7 +49,7 @@ async function getTotalImageCount(src, rootMeta, data) {
   if (hasSubIFDs) {
     return rootMeta.reduce((sum, imgMeta) => {
       const {
-        Pixels: { SizeC, SizeT, SizeZ }
+        Pixels: { SizeC, SizeT, SizeZ },
       } = imgMeta;
       const numImagesPerResolution = SizeC * SizeT * SizeZ;
       return numImagesPerResolution + sum;
@@ -57,7 +57,7 @@ async function getTotalImageCount(src, rootMeta, data) {
   }
   const levels = data[0].length;
   const {
-    Pixels: { SizeC, SizeT, SizeZ }
+    Pixels: { SizeC, SizeT, SizeZ },
   } = rootMeta[0];
   const numImagesPerResolution = SizeC * SizeT * SizeZ;
   return numImagesPerResolution * levels;
@@ -84,7 +84,7 @@ export async function createLoader(
         // TODO(2021-05-09): temporarily disable `pool` until inline worker module is fixed.
         const source = await loadOmeTiff(urlOrFile, {
           images: 'all',
-          pool: false
+          pool: false,
         });
         return source;
       }
@@ -96,7 +96,7 @@ export async function createLoader(
       const source = await loadOmeTiff(urlOrFile, {
         offsets,
         images: 'all',
-        pool: false
+        pool: false,
       });
 
       // Show a warning if the total number of channels/images exceeds a fixed amount.
@@ -104,8 +104,8 @@ export async function createLoader(
       // built in to the format for them, hence the ternary.
       const totalImageCount = await getTotalImageCount(
         urlOrFile,
-        source.map(s => s.metadata),
-        source.map(s => s.data)
+        source.map((s) => s.metadata),
+        source.map((s) => s.data)
       );
       if (isOffsets404 && totalImageCount > MAX_CHANNELS_FOR_SNACKBAR_WARNING) {
         handleOffsetsNotFound(true);
@@ -131,11 +131,11 @@ export async function createLoader(
       // extract metadata into OME-XML-like form
       const metadata = {
         Pixels: {
-          Channels: res.metadata.omero.channels.map(c => ({
+          Channels: res.metadata.omero.channels.map((c) => ({
             Name: c.label,
-            SamplesPerPixel: 1
-          }))
-        }
+            SamplesPerPixel: 1,
+          })),
+        },
       };
       source = { data: res.data, metadata };
     }
@@ -165,7 +165,7 @@ export function getNameFromUrl(url) {
 function getDefaultGlobalSelection({ labels, shape }) {
   const dims = labels
     .map((name, i) => [name, i])
-    .filter(d => GLOBAL_SLIDER_DIMENSION_FIELDS.includes(d[0]));
+    .filter((d) => GLOBAL_SLIDER_DIMENSION_FIELDS.includes(d[0]));
 
   /**
    * @type { { t: number, z: number, c: number  } }
@@ -199,12 +199,12 @@ export function buildDefaultSelection(pixelSource) {
 
   const firstNonGlobalDimension = pixelSource.labels
     .map((name, i) => ({ name, size: pixelSource.shape[i] }))
-    .find(d => !GLOBAL_SLIDER_DIMENSION_FIELDS.includes(d.name) && d.size);
+    .find((d) => !GLOBAL_SLIDER_DIMENSION_FIELDS.includes(d.name) && d.size);
 
   for (let i = 0; i < Math.min(4, firstNonGlobalDimension.size); i += 1) {
     selection.push({
       [firstNonGlobalDimension.name]: i,
-      ...globalSelection
+      ...globalSelection,
     });
   }
 
@@ -217,7 +217,7 @@ export function buildDefaultSelection(pixelSource) {
 export function hexToRgb(hex) {
   // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result.map(d => parseInt(d, 16)).slice(1);
+  return result.map((d) => parseInt(d, 16)).slice(1);
 }
 
 export function range(length) {
@@ -228,7 +228,7 @@ export function useWindowSize(scaleWidth = 1, scaleHeight = 1) {
   function getSize() {
     return {
       width: window.innerWidth * scaleWidth,
-      height: window.innerHeight * scaleHeight
+      height: window.innerHeight * scaleHeight,
     };
   }
   const [windowSize, setWindowSize] = useState(getSize());
@@ -258,13 +258,13 @@ export async function getSingleSelectionStats3D({ loader, selection }) {
   // eslint-disable-next-line no-bitwise
   const sizeZ = shape[labels.indexOf('z')] >> (loader.length - 1);
   const raster0 = await lowResSource.getRaster({
-    selection: { ...selection, z: 0 }
+    selection: { ...selection, z: 0 },
   });
   const rasterMid = await lowResSource.getRaster({
-    selection: { ...selection, z: Math.floor(sizeZ / 2) }
+    selection: { ...selection, z: Math.floor(sizeZ / 2) },
   });
   const rasterTop = await lowResSource.getRaster({
-    selection: { ...selection, z: Math.max(0, sizeZ - 1) }
+    selection: { ...selection, z: Math.max(0, sizeZ - 1) },
   });
   const stats0 = getChannelStats(raster0.data);
   const statsMid = getChannelStats(rasterMid.data);
@@ -272,7 +272,7 @@ export async function getSingleSelectionStats3D({ loader, selection }) {
   return {
     domain: [
       Math.min(stats0.domain[0], statsMid.domain[0], statsTop.domain[0]),
-      Math.max(stats0.domain[1], statsMid.domain[1], statsTop.domain[1])
+      Math.max(stats0.domain[1], statsMid.domain[1], statsTop.domain[1]),
     ],
     contrastLimits: [
       Math.min(
@@ -284,8 +284,8 @@ export async function getSingleSelectionStats3D({ loader, selection }) {
         stats0.contrastLimits[1],
         statsMid.contrastLimits[1],
         statsTop.contrastLimits[1]
-      )
-    ]
+      ),
+    ],
   };
 }
 
@@ -298,12 +298,12 @@ export const getSingleSelectionStats = async ({ loader, selection, use3d }) => {
 
 export const getMultiSelectionStats = async ({ loader, selections, use3d }) => {
   const stats = await Promise.all(
-    selections.map(selection =>
+    selections.map((selection) =>
       getSingleSelectionStats({ loader, selection, use3d })
     )
   );
-  const domains = stats.map(stat => stat.domain);
-  const contrastLimits = stats.map(stat => stat.contrastLimits);
+  const domains = stats.map((stat) => stat.domain);
+  const contrastLimits = stats.map((stat) => stat.contrastLimits);
   return { domains, contrastLimits };
 };
 
@@ -370,7 +370,7 @@ export function getBoundingCube(loader) {
   const ySlice = [0, physicalSizeScalingMatrix[5] * shape[labels.indexOf('y')]];
   const zSlice = [
     0,
-    physicalSizeScalingMatrix[10] * shape[labels.indexOf('z')]
+    physicalSizeScalingMatrix[10] * shape[labels.indexOf('z')],
   ];
   return [xSlice, ySlice, zSlice];
 }

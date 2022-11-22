@@ -2,7 +2,7 @@ export const MAX_CHANNELS = 6;
 export const DEFAULT_OVERVIEW = {
   margin: 25,
   scale: 0.15,
-  position: 'bottom-left'
+  position: 'bottom-left',
 };
 export const COLORMAP_OPTIONS = [
   'viridis',
@@ -14,7 +14,7 @@ export const COLORMAP_OPTIONS = [
   'copper',
   'summer',
   'density',
-  'inferno'
+  'inferno',
 ];
 export const COLOR_PALLETE = [
   [0, 0, 255],
@@ -24,7 +24,7 @@ export const COLOR_PALLETE = [
   [255, 128, 0],
   [0, 255, 255],
   [255, 255, 255],
-  [255, 0, 0]
+  [255, 0, 0],
 ];
 export const GLOBAL_SLIDER_DIMENSION_FIELDS = ['z', 't'];
 export const INITIAL_SLIDER_VALUE = [1500, 20000];

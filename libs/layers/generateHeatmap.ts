@@ -1,4 +1,4 @@
-import {GridCellLayer} from 'deck.gl';
+import { GridCellLayer } from 'deck.gl';
 
 export const generateHeatmap = (
   data: unknown,
@@ -17,11 +17,15 @@ export const generateHeatmap = (
     highlightColor: [255, 255, 255, 80],
     extruded: false,
     cellSize,
-    opacity: (selectedHeatmap === null || !visible) ? 0 : (zoomOpacity * sliderOpacity),
+    opacity:
+      selectedHeatmap === null || !visible ? 0 : zoomOpacity * sliderOpacity,
     getPosition: (d: any) => d.position,
-    getFillColor: selectedHeatmap === null ? [0,0,0,0] : (d: any) => d.fillColors[selectedHeatmap],
+    getFillColor:
+      selectedHeatmap === null
+        ? [0, 0, 0, 0]
+        : (d: any) => d.fillColors[selectedHeatmap],
     updateTriggers: {
-      getFillColor: selectedHeatmap
-    }
+      getFillColor: selectedHeatmap,
+    },
   });
 };

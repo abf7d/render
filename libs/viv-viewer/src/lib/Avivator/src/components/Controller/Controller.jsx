@@ -25,7 +25,7 @@ import {
   useViewerStore,
   useImageSettingsStore,
   useLoader,
-  useMetadata
+  useMetadata,
 } from '../../state';
 import { guessRgb, useWindowSize, getSingleSelectionStats } from '../../utils';
 import { GLOBAL_SLIDER_DIMENSION_FIELDS } from '../../constants';
@@ -59,9 +59,9 @@ const Controller = () => {
     ids,
     setPropertiesForChannel,
     toggleIsOnSetter,
-    removeChannel
+    removeChannel,
   ] = useChannelsStore(
-    store => [
+    (store) => [
       store.channelsVisible,
       store.contrastLimits,
       store.colors,
@@ -70,13 +70,13 @@ const Controller = () => {
       store.ids,
       store.setPropertiesForChannel,
       store.toggleIsOn,
-      store.removeChannel
+      store.removeChannel,
     ],
     shallow
   );
   const loader = useLoader();
 
-  const colormap = useImageSettingsStore(store => store.colormap);
+  const colormap = useImageSettingsStore((store) => store.colormap);
   const [
     channelOptions,
     useLinkedView,
@@ -87,9 +87,9 @@ const Controller = () => {
     setIsChannelLoading,
     removeIsChannelLoading,
     pixelValues,
-    isViewerLoading
+    isViewerLoading,
   ] = useViewerStore(
-    store => [
+    (store) => [
       store.channelOptions,
       store.useLinkedView,
       store.use3d,
@@ -99,7 +99,7 @@ const Controller = () => {
       store.setIsChannelLoading,
       store.removeIsChannelLoading,
       store.pixelValues,
-      store.isViewerLoading
+      store.isViewerLoading,
     ],
     shallow
   );
@@ -107,31 +107,31 @@ const Controller = () => {
   const viewSize = useWindowSize();
   const isRgb = metadata && guessRgb(metadata);
   const { shape, labels } = loader[0];
-  const globalControlLabels = labels.filter(label =>
+  const globalControlLabels = labels.filter((label) =>
     GLOBAL_SLIDER_DIMENSION_FIELDS.includes(label)
   );
-  const onSelectionChanges=[]; // For exposing functionality externally
+  const onSelectionChanges = []; // For exposing functionality externally
   const channelControllers = ids.map((id, i) => {
-    const onSelectionChange = e => {
+    const onSelectionChange = (e) => {
       const selection = {
         ...selections[i],
-        c: channelOptions.indexOf(e.target.value)
+        c: channelOptions.indexOf(e.target.value),
       };
       setIsChannelLoading(i, true);
       getSingleSelectionStats({
         loader,
         selection,
-        use3d
+        use3d,
       }).then(({ domain, contrastLimits: newContrastLimit }) => {
         setPropertiesForChannel(i, {
           contrastLimits: newContrastLimit,
-          domains: domain
+          domains: domain,
         });
         useImageSettingsStore.setState({
           onViewportLoad: () => {
             useImageSettingsStore.setState({ onViewportLoad: () => {} });
             setIsChannelLoading(i, false);
-          }
+          },
         });
         setPropertiesForChannel(i, { selections: selection });
       });
@@ -144,7 +144,7 @@ const Controller = () => {
       removeChannel(i);
       removeIsChannelLoading(i);
     };
-    const handleColorSelect = color => {
+    const handleColorSelect = (color) => {
       setPropertiesForChannel(i, { colors: color });
     };
     const name = channelOptions[selections[i].c];
@@ -171,8 +171,8 @@ const Controller = () => {
       </Grid>
     );
   });
-  store.setState({onSelectionChanges}); // For exposing functionality externally
-  const globalControllers = globalControlLabels.map(label => {
+  store.setState({ onSelectionChanges }); // For exposing functionality externally
+  const globalControllers = globalControlLabels.map((label) => {
     const size = shape[labels.indexOf(label)];
     // Only return a slider if there is a "stack."
     return size > 1 ? (
@@ -190,7 +190,7 @@ const Controller = () => {
         {useColormap && <ColormapSelect />}
         {useLens && !colormap && !use3d && shape[labels.indexOf('c')] > 1 && (
           <LensSelect
-            channelOptions={selections.map(sel => channelOptions[sel.c])}
+            channelOptions={selections.map((sel) => channelOptions[sel.c])}
           />
         )}
         {!use3d && globalControllers}
@@ -211,7 +211,7 @@ const Controller = () => {
       <Divider
         style={{
           marginTop: '8px',
-          marginBottom: '8px'
+          marginBottom: '8px',
         }}
       />
       {<PictureInPictureToggle />}

@@ -5,14 +5,8 @@ import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [
-    ImageMenuComponent,
-    OverlayMenuComponent
-  ],
-  exports: [
-    ImageMenuComponent,
-    OverlayMenuComponent
-  ],
+  declarations: [ImageMenuComponent, OverlayMenuComponent],
+  exports: [ImageMenuComponent, OverlayMenuComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MenuComponentsModule {}

@@ -5,12 +5,8 @@ import { MenuComponentsModule } from '@render/menu-components';
 
 @NgModule({
   imports: [CommonModule, MenuComponentsModule],
-  declarations: [
-    VivViewComponent
-  ],
-  exports: [
-    VivViewComponent
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  declarations: [VivViewComponent],
+  exports: [VivViewComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ViewsModule {}

@@ -1,7 +1,10 @@
-import {PolygonLayer} from 'deck.gl';
+import { PolygonLayer } from 'deck.gl';
 
-export const generatePolygons = (data: any, visible: boolean, opacity: number) => {
-  
+export const generatePolygons = (
+  data: any,
+  visible: boolean,
+  opacity: number
+) => {
   return new PolygonLayer({
     id: 'polygon-layer-#detail#',
     data,
@@ -13,6 +16,6 @@ export const generatePolygons = (data: any, visible: boolean, opacity: number) =
     lineWidthMinPixels: 3,
     getPolygon: (d: any) => d.contour,
     getFillColor: (d: any) => d.fillColor,
-    getLineColor: (d: any) => d.lineColor
+    getLineColor: (d: any) => d.lineColor,
   });
 };

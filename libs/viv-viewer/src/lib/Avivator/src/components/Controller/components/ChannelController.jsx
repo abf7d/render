@@ -12,7 +12,7 @@ import { FILL_PIXEL_VALUE } from '../../../constants';
 import {
   useLoader,
   useImageSettingsStore,
-  useViewerStore
+  useViewerStore,
 } from '../../../state';
 import { truncateDecimalNumber } from '../../../utils';
 
@@ -52,12 +52,12 @@ function ChannelController({
   color,
   handleRemoveChannel,
   handleColorSelect,
-  isLoading
+  isLoading,
 }) {
   const loader = useLoader();
-  const colormap = useImageSettingsStore(store => store.colormap);
+  const colormap = useImageSettingsStore((store) => store.colormap);
   const [channelOptions, useLinkedView, use3d] = useViewerStore(
-    store => [store.channelOptions, store.useLinkedView, store.use3d],
+    (store) => [store.channelOptions, store.useLinkedView, store.use3d],
     shallow
   );
   const rgbColor = toRgb(colormap, color);
@@ -72,7 +72,7 @@ function ChannelController({
       <Grid container direction="row" justify="space-between">
         <Grid item xs={11}>
           <Select native value={name} onChange={onSelectionChange}>
-            {channelOptions.map(opt => (
+            {channelOptions.map((opt) => (
               <option disabled={isLoading} key={opt} value={opt}>
                 {opt}
               </option>
@@ -99,8 +99,8 @@ function ChannelController({
             style={{
               color: rgbColor,
               '&$checked': {
-                color: rgbColor
-              }
+                color: rgbColor,
+              },
             }}
           />
         </Grid>
@@ -111,14 +111,14 @@ function ChannelController({
             onChange={handleSliderChange}
             valueLabelDisplay="auto"
             getAriaLabel={() => `${name}-${color}-${slider}`}
-            valueLabelFormat={v => truncateDecimalNumber(v, 5)}
+            valueLabelFormat={(v) => truncateDecimalNumber(v, 5)}
             min={min}
             max={max}
             step={step}
             orientation="horizontal"
             style={{
               color: rgbColor,
-              marginTop: '7px'
+              marginTop: '7px',
             }}
           />
         </Grid>

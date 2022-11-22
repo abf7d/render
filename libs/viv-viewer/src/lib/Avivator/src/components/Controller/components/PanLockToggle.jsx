@@ -6,10 +6,10 @@ import { useImageSettingsStore, useViewerStore } from '../../../state';
 
 const PanLockToggle = () => {
   const [togglePanLock, panLock] = useImageSettingsStore(
-    store => [store.togglePanLock, store.panLock],
+    (store) => [store.togglePanLock, store.panLock],
     shallow
   );
-  const isViewerLoading = useViewerStore(store => store.isViewerLoading);
+  const isViewerLoading = useViewerStore((store) => store.isViewerLoading);
   return (
     <Button
       disabled={isViewerLoading}
