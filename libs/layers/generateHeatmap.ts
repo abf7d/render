@@ -11,7 +11,7 @@ export const generateHeatmap = (
   return new GridCellLayer({
     id: 'grid-cell-layer-#detail#',
     data,
-    //visible,
+    // This layer does not explicitly specify its `visible` property, it uses the opacity property for showing and hiding the layer
     pickable: true,
     autoHighlight: zoomOpacity > 0.5,
     highlightColor: [255, 255, 255, 80],
