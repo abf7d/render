@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { store } from 'libs/state/state';
 import config from '../assets/config.json';
 import { processOverlayData } from '../../../../libs/data-processing/process-overlay-data';
-interface Todo {
-  title: string;
-}
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'render-root',
@@ -16,18 +14,19 @@ export class AppComponent {
   imageUrls: string[] | undefined;
   overlayData: any;
 
+  constructor(private http:HttpClient){
+
+  }
   ngOnInit(): void {
     const numberOfPlates = 50;
-    fetch(config.plateUrl)
-      .then((response) => response.json())
-      .then((data) => {
+    this.http.get(config.plateUrl)
+      .subscribe((data: any) => {
         this.imageUrls = data
           .map((item: { name: string }) => config.plateUrl + item.name)
           .slice(0, numberOfPlates);
       });
-    fetch(config.overlayUrl)
-      .then((response) => response.json())
-      .then((data) => {
+      this.http.get(config.overlayUrl)
+      .subscribe((data: any) => {
         const processedData = processOverlayData({
           overlayData: data.slice(0, numberOfPlates),
           baseChemicalUrl: config.baseFormulaUrl,
