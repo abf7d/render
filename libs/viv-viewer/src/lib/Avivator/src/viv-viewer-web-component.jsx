@@ -16,7 +16,6 @@ import { getNameFromUrl } from './utils';
 class VivViewerWebComponentWrapper extends HTMLElement {
   constructor() {
       super();
-      // Do something more
     }
   
     connectedCallback() {
@@ -38,7 +37,6 @@ function getRandomSource() {
   return sources[Math.floor(Math.random() * sources.length)];
 }
 
-// https://reactrouter.com/web/example/query-parameters
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
