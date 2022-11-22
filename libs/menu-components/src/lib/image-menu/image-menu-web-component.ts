@@ -37,11 +37,10 @@ class ImageMenuWebComponent extends HTMLElement {
         const colorOptions=COLOR_PALLETE.map((color: number[])=>[color.join(" "), color]);
         let initialized=false;
         let channelOptions: string[]=[];
-        const unsubscribe=useChannelsStore.subscribe((currentState: any, previousState: any)=>{
+        useChannelsStore.subscribe((currentState: any, previousState: any)=>{
             this.viewerState=currentState;
             if(JSON.stringify(currentState.colors)!==JSON.stringify(previousState.colors)) {
                 numberOfChannels=currentState.colors.length;
-                //unsubscribe();
 
                 const render = () => {
                     menuContainer.innerHTML=`
