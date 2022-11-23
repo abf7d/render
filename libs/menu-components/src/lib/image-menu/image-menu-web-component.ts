@@ -14,11 +14,9 @@ class ImageMenuWebComponent extends HTMLElement {
 
   selectChannel(sliderIndex: number, channelIndex: number) {
     // @ts-ignore
-    store
-      .getState()
-      .onSelectionChanges[sliderIndex]({
-        target: { value: 'Channel ' + channelIndex },
-      });
+    store.getState().onSelectionChanges[sliderIndex]({
+      target: { value: 'Channel ' + channelIndex },
+    });
   }
   constructor() {
     super();
@@ -65,49 +63,89 @@ class ImageMenuWebComponent extends HTMLElement {
                         ${currentState.colors
                           .map(
                             (color: number[], index: number) => `
-                            <div style="margin:10px;">
-                                <input checked type="checkbox" onclick="this.getRootNode().host.viewerState.toggleIsOn(${index})">
-                                <div style="display: inline-block; width:88%; position:relative; top:15px;"><multi-range-slider
-                        color="rgb(${color.join()})"
-                        min=${currentState.domains[index][0]}
-                        max=${currentState.domains[index][1]}
-                        value1=${currentState.contrastLimits[index][0]}
-                        value2=${currentState.contrastLimits[index][1]}
-                        oninput1="this.getRootNode().host.getRootNode().host.viewerState.setPropertiesForChannel(${index},{contrastLimits: [Number(this.value), this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][1]]})"
-                        oninput2="this.getRootNode().host.getRootNode().host.viewerState.setPropertiesForChannel(${index},{contrastLimits: [this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][0], Number(this.value)]})"
-                        ></multi-range-slider></div>
-                                <span style="font-size:20px;" onclick="this.getRootNode().host.viewerState.removeChannel(${index});this.parentNode.remove();">X</span>
-                               <div style="padding-top:10px">
-                               <select style="width:30%;margin-left:110px;" onchange="this.getRootNode().host.selectChannel(${index}, this.selectedIndex)" class="form-select">
-                                ${channelOptions.map(
-                                  (channelOption, channelOptionIndex) => `
+                              <div style="margin:10px;">
+                                <input
+                                  checked
+                                  type="checkbox"
+                                  onclick="this.getRootNode().host.viewerState.toggleIsOn(${index})"
+                                />
+                                <div
+                                  style="display: inline-block; width:88%; position:relative; top:15px;"
+                                >
+                                  <multi-range-slider
+                                    color="rgb(${color.join()})"
+                                    min=${currentState.domains[index][0]}
+                                    max=${currentState.domains[index][1]}
+                                    value1=${currentState.contrastLimits[
+                                      index
+                                    ][0]}
+                                    value2=${currentState.contrastLimits[
+                                      index
+                                    ][1]}
+                                    oninput1="this.getRootNode().host.getRootNode().host.viewerState.setPropertiesForChannel(
+                                      ${index},
+                                      {
+                                        contrastLimits: [
+                                          Number(this.value),
+                                          this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][1]
+                                        ]
+                                      }
+                                    )"
+                                    oninput2="this.getRootNode().host.getRootNode().host.viewerState.setPropertiesForChannel(
+                                      ${index},
+                                      {
+                                        contrastLimits: [
+                                          this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][0],
+                                          Number(this.value)
+                                        ]
+                                      }
+                                    )"
+                                  ></multi-range-slider>
+                                </div>
+                                <span
+                                  style="font-size:20px;"
+                                  onclick="this.getRootNode().host.viewerState.removeChannel(${index});this.parentNode.remove();"
+                                  >X</span
+                                >
+                                <div style="padding-top:10px">
+                                  <select
+                                    style="width:30%;margin-left:110px;"
+                                    onchange="this.getRootNode().host.selectChannel(${index}, this.selectedIndex)"
+                                    class="form-select"
+                                  >
+                                    ${channelOptions.map(
+                                      (channelOption, channelOptionIndex) => `
                                 <option ${
                                   index === channelOptionIndex ? 'selected' : ''
                                 }>${channelOptions[channelOptionIndex]}</option>
                                 `
-                                )}
-                            </select>
-                            <select style="width:30%;"
-                            class="form-select"
-                            onchange="this.getRootNode().host.viewerState.setPropertiesForChannel(${index},{colors: this.options[this.selectedIndex].value.split(',').map((color)=>Number(color))})"
-                        >
-                            ${colorOptions
-                              .map(
-                                (colorOption: any) =>
-                                  `<option ${
-                                    JSON.stringify(colorOption[1]) ===
-                                    JSON.stringify(color)
-                                      ? 'selected'
-                                      : ''
-                                  } value="${colorOption[1]}">${
-                                    colorOption[0]
-                                  }</option>`
-                              )
-                              .join('')}
-                        </select>
-                        </div>
-                            </div>
-                        `
+                                    )}
+                                  </select>
+                                  <select
+                                    style="width:30%;"
+                                    class="form-select"
+                                    onchange="this.getRootNode().host.viewerState.setPropertiesForChannel(
+                                      ${index},
+                                      {colors: this.options[this.selectedIndex].value.split(',').map((color)=>Number(color))}
+                                    )"
+                                  >
+                                    ${colorOptions
+                                      .map(
+                                        (colorOption: any) =>
+                                          `<option ${
+                                            JSON.stringify(colorOption[1]) ===
+                                            JSON.stringify(color)
+                                              ? 'selected'
+                                              : ''
+                                          } value="${colorOption[1]}">${
+                                            colorOption[0]
+                                          }</option>`
+                                      )
+                                      .join('')}
+                                  </select>
+                                </div>
+                              </div>
+                            `
                           )
                           .join('')}
                     `;
