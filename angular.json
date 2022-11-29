@@ -230,6 +230,26 @@
       "projectType": "library",
       "tags": [],
       "architect": {
+        "build": {
+          "builder": "@nrwl/web:rollup",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/viv-viewer",
+            "tsConfig": "libs/viv-viewer/tsconfig.lib.json",
+            "project": "libs/viv-viewer/package.json",
+            "entryFile": "libs/viv-viewer/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "compiler": "babel",
+            "assets": [
+              {
+                "glob": "libs/viv-viewer/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
@@ -239,9 +259,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/viv-viewer"],
+          "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
           "options": {
-            "jestConfig": "libs/viv-viewer/jest.config.js",
+            "jestConfig": "libs/viv-viewer/jest.config.ts",
             "passWithNoTests": true
           }
         }
