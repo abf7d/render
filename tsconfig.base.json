@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@labshare/render/views": ["libs/views/src/index.ts"],
+      "@render/menu-components": ["libs/menu-components/src/index.ts"],
+      "@render/state": ["libs/state/src/index.ts"],
       "@render/viv-viewer": ["libs/viv-viewer/src/index.ts"]
     }
   },

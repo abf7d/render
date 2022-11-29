@@ -1,6 +1,32 @@
 {
   "version": 1,
   "projects": {
+    "menu-components": {
+      "projectType": "library",
+      "root": "libs/menu-components",
+      "sourceRoot": "libs/menu-components/src",
+      "prefix": "render",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/menu-components"],
+          "options": {
+            "jestConfig": "libs/menu-components/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/menu-components/src/**/*.ts",
+              "libs/menu-components/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "render-ui": {
       "projectType": "application",
       "root": "apps/render-ui",
@@ -122,6 +148,81 @@
       },
       "tags": [],
       "implicitDependencies": ["render-ui"]
+    },
+    "state": {
+      "root": "libs/state",
+      "sourceRoot": "libs/state/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/js:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/state",
+            "main": "libs/state/src/index.ts",
+            "tsConfig": "libs/state/tsconfig.lib.json",
+            "assets": ["libs/state/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/state/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+          "options": {
+            "jestConfig": "libs/state/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "views": {
+      "projectType": "library",
+      "root": "libs/views",
+      "sourceRoot": "libs/views/src",
+      "prefix": "render",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/libs/views"],
+          "options": {
+            "project": "libs/views/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/views/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/views/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/views"],
+          "options": {
+            "jestConfig": "libs/views/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/views/src/**/*.ts",
+              "libs/views/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     },
     "viv-viewer": {
       "root": "libs/viv-viewer",
