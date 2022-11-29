@@ -22,7 +22,8 @@
     "noFallthroughCasesInSwitch": true,
     "allowJs": true,
     "esModuleInterop": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "target": "es2020"
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
