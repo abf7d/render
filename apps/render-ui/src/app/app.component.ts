@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { store } from 'libs/state/state';
+import { store } from '@render/state';
 import config from '../assets/config.json';
 import { processOverlayData } from '../../../../libs/data-processing/process-overlay-data';
 import { HttpClient } from '@angular/common/http';

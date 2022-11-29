@@ -1,4 +1,4 @@
-import { store } from '../../../../state/state';
+import { store } from '@render/state';
 
 class OverlayMenuWebComponent extends HTMLElement {
   onHeatmapChanged(value: string) {

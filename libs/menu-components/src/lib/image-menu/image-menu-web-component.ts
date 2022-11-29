@@ -6,7 +6,7 @@ import { useViewerStore } from '../../../../viv-viewer/src/lib/Avivator/src/stat
 import './multi-range-slider-web-component';
 import { COLOR_PALLETE } from '../../../../viv-viewer/src/lib/Avivator/src/constants.js';
 
-import { store } from '../../../../state/state';
+import { store } from '@render/state';
 
 class ImageMenuWebComponent extends HTMLElement {
   viewerState: any;
