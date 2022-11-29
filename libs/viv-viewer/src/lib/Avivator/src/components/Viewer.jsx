@@ -19,16 +19,16 @@ import {
 import { useWindowSize, get3DExtension } from '../utils';
 import { DEFAULT_OVERVIEW } from '../constants';
 import { createLoader } from '../utils';
-import { generatePlateText } from '../../../../../../layers/generatePlateText';
-import { generateText } from '../../../../../../layers/generateText';
-import { generatePolygons } from '../../../../../../layers/generatePolygons';
-import { generateHeatmap } from '../../../../../../layers/generateHeatmap';
+import { generatePlateText } from '../../../layers/generatePlateText';
+import { generateText } from '../../../layers/generateText';
+import { generatePolygons } from '../../../layers/generatePolygons';
+import { generateHeatmap } from '../../../layers/generateHeatmap';
 import {
   defaultPlateZoom,
   initialLayerZoom,
   zoomTextVisibilities,
   tooltipBackgroundColor,
-} from '../../../../../../layers/constants';
+} from '../../../layers/constants';
 import { getPixelValues } from '../getPixelValues';
 
 const Viewer = (props) => {
