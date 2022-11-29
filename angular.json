@@ -7,11 +7,27 @@
       "sourceRoot": "libs/menu-components/src",
       "prefix": "render",
       "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+          "options": {
+            "project": "libs/menu-components/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/menu-components/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/menu-components/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/menu-components"],
+          "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
           "options": {
-            "jestConfig": "libs/menu-components/jest.config.js",
+            "jestConfig": "libs/menu-components/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -19,8 +35,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/menu-components/src/**/*.ts",
-              "libs/menu-components/src/**/*.html"
+              "libs/menu-components/**/*.ts",
+              "libs/menu-components/**/*.html"
             ]
           }
         }
