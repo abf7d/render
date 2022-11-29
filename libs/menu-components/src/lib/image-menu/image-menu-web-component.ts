@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore
-import { useChannelsStore } from '../../../../viv-viewer/src/lib/Avivator/src/state.js';
-import { useViewerStore } from '../../../../viv-viewer/src/lib/Avivator/src/state.js';
+import { useChannelsStore } from '@render/viv-viewer';
+import { useViewerStore } from '@render/viv-viewer';
 
 import './multi-range-slider-web-component';
-import { COLOR_PALLETE } from '../../../../viv-viewer/src/lib/Avivator/src/constants.js';
+import { COLOR_PALLETE } from '@render/viv-viewer';
 
 import { store } from '@render/state';
 
