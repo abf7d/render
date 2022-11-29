@@ -37,7 +37,7 @@
     "react-dom": "18.0.0",
     "react-dropzone": "^11.2.3",
     "react-is": "18.0.0",
-    "react-router-dom": "6.4.1",
+    "react-router-dom": "^5.2.0",
     "regenerator-runtime": "0.13.7",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
