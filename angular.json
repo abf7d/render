@@ -180,6 +180,13 @@
             "assets": ["libs/state/*.md"]
           }
         },
+        "publish": {
+          "builder": "nx:run-commands",
+          "options": {
+            "command": "node tools/scripts/publish.mjs state {args.ver} {args.tag}"
+          },
+          "dependsOn": ["build"]
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],

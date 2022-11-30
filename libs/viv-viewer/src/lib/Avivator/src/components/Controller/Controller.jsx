@@ -30,7 +30,7 @@ import {
 import { guessRgb, useWindowSize, getSingleSelectionStats } from '../../utils';
 import { GLOBAL_SLIDER_DIMENSION_FIELDS } from '../../constants';
 
-import { store } from '@render/state';
+import { store } from '@labshare/state';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

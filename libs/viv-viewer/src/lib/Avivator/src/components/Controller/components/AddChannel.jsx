@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import shallow from 'zustand/shallow';
-import { store } from '@render/state';
+import { store } from '@labshare/state';
 
 import { MAX_CHANNELS } from '../../../constants';
 import {

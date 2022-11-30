@@ -6,7 +6,7 @@ import { useViewerStore } from '@labshare/viv-viewer';
 import './multi-range-slider-web-component';
 import { COLOR_PALLETE } from '@labshare/viv-viewer';
 
-import { store } from '@render/state';
+import { store } from '@labshare/state';
 
 class ImageMenuWebComponent extends HTMLElement {
   viewerState: any;
