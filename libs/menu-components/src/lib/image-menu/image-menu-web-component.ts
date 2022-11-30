@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore
-import { useChannelsStore } from '@render/viv-viewer';
-import { useViewerStore } from '@render/viv-viewer';
+import { useChannelsStore } from '@labshare/viv-viewer';
+import { useViewerStore } from '@labshare/viv-viewer';
 
 import './multi-range-slider-web-component';
-import { COLOR_PALLETE } from '@render/viv-viewer';
+import { COLOR_PALLETE } from '@labshare/viv-viewer';
 
 import { store } from '@render/state';
 
