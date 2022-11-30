@@ -8,7 +8,7 @@
       "prefix": "render",
       "architect": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "builder": "@nrwl/angular:package",
           "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
           "options": {
             "project": "libs/menu-components/ng-package.json"
