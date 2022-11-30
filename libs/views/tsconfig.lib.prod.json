@@ -1,6 +1,8 @@
 {
   "extends": "./tsconfig.lib.json",
   "compilerOptions": {
+    "checkJs": false,
+    "jsx": "react-jsx",
     "declarationMap": false,
     "target": "ES2022",
     "useDefineForClassFields": false

@@ -1,4 +1,9 @@
 {
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
+    }
+  },
   "npmScope": "render",
   "affected": {
     "defaultBase": "main"

@@ -10,5 +10,5 @@
     "useDefineForClassFields": false
   },
   "exclude": ["src/test-setup.ts", "**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts","**/*.jsx","**/*.tsx"]
 }
