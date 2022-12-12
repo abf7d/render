@@ -1,0 +1,34 @@
+{
+  "name": "viv-viewer",
+  "version": "1.0.0",
+  "description": "This library was generated with [Nx](https://nx.dev).",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "scripts": {
+    "rollup": "rollup -c",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.2",
+    "rollup-plugin-jsx": "^1.0.3"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.18.6",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^23.0.4",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "8.3.3",
+    "@types/react": "^17.0.50",
+    "rollup": "^3.7.0",
+    "rollup-plugin-dts": "^5.0.0",
+    "tslib": "^2.4.1",
+    "typescript": "~4.4.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "type": "module"
+}
