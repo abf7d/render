@@ -4,9 +4,19 @@ import { useChannelsStore } from '@labshare/viv-viewer';
 import { useViewerStore } from '@labshare/viv-viewer';
 
 import './multi-range-slider-web-component';
-import { COLOR_PALLETE } from '@labshare/viv-viewer';
 
 import { store } from '@labshare/state';
+
+const CHANNEL_COLORS=[
+  ["Blue", [0, 0, 255]],
+  ["Green", [0, 255, 0]],
+  ["Fuchsia", [255, 0, 255]],
+  ["Yellow", [255, 255, 0]],
+  ["Orange", [255, 128, 0]],
+  ["Aqua", [0, 255, 255]],
+  ["White", [255, 255, 255]],
+  ["Red", [255, 0, 0]]
+]
 
 class ImageMenuWebComponent extends HTMLElement {
   viewerState: any;
@@ -44,10 +54,6 @@ class ImageMenuWebComponent extends HTMLElement {
 
     const menuContainer = shadow.appendChild(document.createElement('div'));
     this.useChannelsStore = useChannelsStore;
-    const colorOptions = COLOR_PALLETE.map((color: number[]) => [
-      color.join(' '),
-      color,
-    ]);
     let initialized = false;
     let channelOptions: string[] = [];
     useChannelsStore.subscribe((currentState: any, previousState: any) => {
@@ -129,16 +135,14 @@ class ImageMenuWebComponent extends HTMLElement {
                                       {colors: this.options[this.selectedIndex].value.split(',').map((color)=>Number(color))}
                                     )"
                                   >
-                                    ${colorOptions
-                                      .map(
-                                        (colorOption: any) =>
+                                    ${CHANNEL_COLORS.map(([colorName, colorValue]) =>
                                           `<option ${
-                                            JSON.stringify(colorOption[1]) ===
+                                            JSON.stringify(colorValue) ===
                                             JSON.stringify(color)
                                               ? 'selected'
                                               : ''
-                                          } value="${colorOption[1]}">${
-                                            colorOption[0]
+                                          } value="${colorValue}">${
+                                            colorName
                                           }</option>`
                                       )
                                       .join('')}
