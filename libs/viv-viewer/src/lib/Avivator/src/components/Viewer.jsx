@@ -138,7 +138,8 @@ const Viewer = (props) => {
           zoom >= plateZoom,
         1,
         props.heatmapOpacity,
-        props.heatmapId
+        props.heatmapId,
+        zoom < -3
       ),
     ]);
   };
