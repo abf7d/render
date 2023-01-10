@@ -1,6 +1,6 @@
 {
   "name": "@labshare/menu-components",
-  "version": "5.0.40",
+  "version": "6.0.0",
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0"
