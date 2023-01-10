@@ -17,7 +17,7 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    const numberOfPlates = 50;
+    const numberOfPlates = 200;
     const imageUrl$ = this.http.get(config.plateUrl);
     const overlayUrl$ = this.http.get(config.overlayUrl);
     forkJoin([imageUrl$, overlayUrl$]).subscribe(
