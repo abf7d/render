@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { store } from '@render/state';
+import { store } from '@labshare/state';
 
 @Component({
   selector: 'render-viv-view',

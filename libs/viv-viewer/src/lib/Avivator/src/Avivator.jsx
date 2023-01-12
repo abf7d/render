@@ -7,7 +7,7 @@ import Viewer from './components/Viewer.jsx';
 import Controller from './components/Controller/Controller.jsx';
 import DropzoneWrapper from './components/DropzoneWrapper.jsx';
 import Footer from './components/Footer.jsx';
-import { store } from '@render/state';
+import { store } from '@labshare/state';
 
 /* eslint-disable camelcase */
 import create from 'zustand';

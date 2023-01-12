@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { store } from '@render/state';
+import { store } from '@labshare/state';
 import config from '../assets/config.json';
-import { processOverlayData } from '../../../../libs/data-processing/process-overlay-data';
+import { processOverlayData } from '../data-processing/process-overlay-data';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 
@@ -17,7 +17,7 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    const numberOfPlates = 50;
+    const numberOfPlates = 200;
     const imageUrl$ = this.http.get(config.plateUrl);
     const overlayUrl$ = this.http.get(config.overlayUrl);
     forkJoin([imageUrl$, overlayUrl$]).subscribe(
