@@ -1,5 +1,5 @@
 {
-  "overlayUrl": "https://files.scb-ncats.io/pyramids/overlays/overlay2.json",
-  "plateUrl": "https://files.scb-ncats.io/pyramids/eastmannew/zarrpyramids_intensity/",
+  "overlayUrl": "https://files.scb-ncats.io/pyramids/eastman_demo_2023/overlay.json",
+  "plateUrl": "https://files.scb-ncats.io/pyramids/eastman_demo_2023/zarrpyramids/",
   "baseFormulaUrl": "http://files.ci.ncats.io/structures/renderServletv16?background=transparent&format=png&structure="
 }

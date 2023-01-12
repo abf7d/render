@@ -214,7 +214,6 @@ class MultiRangeSlider extends HTMLElement {
   )}" min="${this.getAttribute('min')}" max="${this.getAttribute(
       'max'
     )}" step="1" oninput="
-  this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
   var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
   var children = this.parentNode.childNodes[1].childNodes;
   children[1].style.width=value+'%';
@@ -228,7 +227,6 @@ class MultiRangeSlider extends HTMLElement {
   )}" min="${this.getAttribute('min')}" max="${this.getAttribute(
       'max'
     )}" step="1" oninput="
-  this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
   var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
   var children = this.parentNode.childNodes[1].childNodes;
   children[3].style.width=(100-value)+'%';

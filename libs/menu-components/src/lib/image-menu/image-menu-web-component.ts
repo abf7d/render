@@ -92,8 +92,8 @@ class ImageMenuWebComponent extends HTMLElement {
                                       ${index},
                                       {
                                         contrastLimits: [
-                                          Number(this.value),
-                                          this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][1]
+                                          Math.min(Number(this.value), this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][1]),
+                                          Math.max(Number(this.value), this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][1])
                                         ]
                                       }
                                     )"
@@ -101,8 +101,8 @@ class ImageMenuWebComponent extends HTMLElement {
                                       ${index},
                                       {
                                         contrastLimits: [
-                                          this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][0],
-                                          Number(this.value)
+                                          Math.min(this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][0], Number(this.value)),
+                                          Math.max(this.getRootNode().host.getRootNode().host.useChannelsStore.getState().contrastLimits[${index}][0], Number(this.value))
                                         ]
                                       }
                                     )"
